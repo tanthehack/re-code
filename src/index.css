@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Monaspace Neon Var';
+  src: url(src/assets/fonts/MonaspaceNeonVarVF.ttf) format('ttf');
+}
