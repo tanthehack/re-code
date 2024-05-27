@@ -23,8 +23,8 @@ export default {
         main: '#141517',
         light: '#47494C',
         dark: "#0F1013"
-      }
-
+      },
+      white: '#ffffff'
     },
     extend: {},
   },
