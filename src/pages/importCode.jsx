@@ -5,7 +5,7 @@ import { CodeCard } from "../components/card"
 
 export const ImportCode = () => {
     return (
-        <div className="flex flex-col items-center justify-center gap-12 h-full">
+        <div className="flex flex-col items-center mt-20 gap-12 h-full">
             <div className="flex flex-col gap-3">
                 <h1 className="text-6xl font-bold">Import Code</h1>
                 <p>Select an option below to inport <br /> your code into re-code_</p>

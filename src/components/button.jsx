@@ -18,12 +18,13 @@ const buttonVariants = cva(
                     "bg-secondary text-secondary-foreground hover:bg-secondary/80",
                 ghost: "hover:bg-accent hover:text-accent-foreground",
                 link: "text-orange-main underline-offset-4 hover:underline",
+                none: "hover:bg-orange-main",
             },
             size: {
                 default: "h-11 px-6 py-4",
                 sm: "h-9 rounded-md px-3 py-4",
                 lg: "h-11 rounded-md px-8 py-4",
-                icon: "h-11 w-10",
+                icon: "h-10 w-10",
                 full: "h-11 w-full px-6 py-4",
             },
         },
@@ -42,7 +43,6 @@ const Button = React.forwardRef(
                 className={cn(buttonVariants({ variant, size, className }))}
                 ref={ref}
                 {...props}
-                onClick={props.onClick}
             />
         );
     }
