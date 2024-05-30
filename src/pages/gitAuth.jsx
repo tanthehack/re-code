@@ -22,11 +22,18 @@ export const GitAuth = () => {
                         <p>View and download private and public repos</p>
                     </div>
                 </div>
-                <Button asChild className="w-full">
-                    <Link to="import">
-                        Authorize Re-Code_
-                    </Link>
-                </Button>
+                <div className="w-full flex flex-col gap-3">
+                    <Button asChild className="w-full">
+                        <Link to="import">
+                            Authorize Re-Code_
+                        </Link>
+                    </Button>
+                    <Button variant="outline" asChild className="w-full">
+                        <Link to="/">
+                            Cancel
+                        </Link>
+                    </Button>
+                </div>
             </div>
         </div>
     )
