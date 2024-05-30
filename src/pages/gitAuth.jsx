@@ -1,6 +1,5 @@
 import gh from "../assets/icons/github.svg"
 import logo from "../assets/images/logo.svg"
-import line from "../assets/icons/line.svg"
 import * as Icon from "lucide-react"
 import { Button } from "../components/button"
 import { Link } from "react-router-dom"
