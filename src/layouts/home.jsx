@@ -8,6 +8,7 @@ import grdDark from '../assets/images/bgGrad2.svg'
 import logo from '../assets/images/logo.svg'
 import { Button } from "../components/button"
 import * as Icon from "lucide-react"
+import { ThemeToggle } from "../components/themeToggle"
 
 export const Home = () => {
     const location = useLocation()
@@ -29,8 +30,8 @@ export const Home = () => {
                     </Button> : null
                 }
                 <img src={logo} alt="Re-code logo in orange" className="col-start-2" />
-                <div></div>
             </div>
+            <ThemeToggle classNames="absolute z-[100] bottom-6 left-4 rounded-full" />
             <section className="relative h-[calc(100dvh-82px)] z-[10] w-full">
                 <Outlet />
             </section>
