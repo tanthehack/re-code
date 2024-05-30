@@ -12,6 +12,7 @@ import { GitAuth } from './pages/gitAuth.jsx';
 import { Editor } from './pages/editor.jsx';
 import { Summary } from './pages/summary.jsx';
 import { Landing } from './pages/landing.jsx';
+import { Repos } from './pages/repos.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: "import",
-        element: <ImportCode />, //conditinally render the git repos in this component
+        element: <ImportCode />,
+      },
+      {
+        path: "import/repos",
+        element: <Repos />
       },
       {
         path: "gitauth",
