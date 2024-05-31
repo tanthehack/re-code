@@ -13,11 +13,15 @@ import { Editor } from './pages/editor.jsx';
 import { Summary } from './pages/summary.jsx';
 import { Landing } from './pages/landing.jsx';
 import { Repos } from './pages/repos.jsx';
+import { Provider } from 'react-redux';
+import { store } from './app/store.js';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Provider store={store}>
+      <Home />
+    </Provider>,
     children: [
       {
         index: true,

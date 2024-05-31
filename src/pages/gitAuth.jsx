@@ -24,9 +24,9 @@ export const GitAuth = () => {
                 </div>
                 <div className="w-full flex flex-col gap-3">
                     <Button asChild className="w-full">
-                        <Link to="import">
+                        <a href={`https://github.com/login/oauth/authorize?client_id=${import.meta.env.VITE_GH_CLIENT_ID}`}>
                             Authorize Re-Code_
-                        </Link>
+                        </a>
                     </Button>
                     <Button variant="outline" asChild className="w-full">
                         <Link to="/">

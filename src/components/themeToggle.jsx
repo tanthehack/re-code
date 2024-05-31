@@ -30,7 +30,7 @@ export const ThemeToggle = ({ classNames }) => {
 
     return (
         <Button size="icon" onClick={handleThemeSwitch} className={classNames}>
-            {currentTheme === 'dark' ? <Icon.MoonIcon /> : <Icon.SunIcon />}
+            {currentTheme === 'dark' ? <Icon.MoonIcon className="w-4" /> : <Icon.SunIcon className="w-4" />}
         </Button>
     )
 }
