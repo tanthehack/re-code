@@ -15,6 +15,7 @@ import { Landing } from './pages/landing.jsx';
 import { Repos } from './pages/repos.jsx';
 import { Provider } from 'react-redux';
 import { store } from './app/store.js';
+import { GitRedirect } from './pages/gitRedirect.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         path: "gitauth",
         element: <GitAuth />,
       },
+      {
+        path: "gitauth/redirect",
+        element: <GitRedirect />
+      }
     ]
   },
   {

@@ -1,26 +1,26 @@
-import { useLocation } from "react-router-dom";
-import { useLazyGetAccessTokenQuery } from "../app/services/ghApi";
+import { selectCurrentToken } from "../app/features/ghSlice";
+import { useLazyGetUserReposQuery } from "../app/services/ghApi"
 import { Button } from "../components/button"
 
 export const Repos = () => {
-    const location = useLocation()
-    const code = new URLSearchParams(location.search).get("code");
-    const [getAccessToken, { data, error, isLoading }] = useLazyGetAccessTokenQuery(code);
 
-    const handleGetToken = async (e) => {
-        e.preventDefault();
+    const [getUserRepos, { data, isLoading }] = useLazyGetUserReposQuery();
+
+    const handleGetAllRepos = async () => {
         try {
-            await fetch(`https://localhost:4000/getAccessToken?code=${code}`, {
-                method: "GET",
-            }).then((data) => console.log(data))
-            // await getAccessToken({ code: code });
+            const token = selectCurrentToken()
+            await getUserRepos({ token: token })
         } catch (error) {
-            console.log(data)
+            console.log(error)
         }
     }
+
     return (
-        <Button className="w-full" onClick={handleGetToken}>
-            Get all Repos
-        </Button>
+        <>
+            <Button className="w-full" onClick={handleGetAllRepos}>
+                Get all Repos
+            </Button>
+            {console.log(data)}
+        </>
     )
 }

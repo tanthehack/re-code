@@ -20,7 +20,7 @@ export const Home = () => {
             <img src={grdLight} alt="an orange gradient" className="absolute h-full w-full dark:hidden z-[1]" />
             <img src={grdDark} alt="an orange gradient" className="dark:absolute dark:block h-full w-full hidden z-[1]" />
             <div className="relative w-full grid grid-cols-3 px-8 place-items-center h-[50px] mt-8 z-[10]">
-                {location.pathname != "/" && location.pathname != "/gitauth" ?
+                {location.pathname != "/" && location.pathname.includes("/gitauth") != true ?
                     <Button
                         size="icon"
                         className="place-self-start"
