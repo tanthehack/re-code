@@ -16,6 +16,7 @@ import { Repos } from './pages/repos.jsx';
 import { Provider } from 'react-redux';
 import { store } from './app/store.js';
 import { GitRedirect } from './pages/gitRedirect.jsx';
+import Protected from './utils/protected.jsx';
 
 const router = createBrowserRouter([
   {
@@ -38,11 +39,16 @@ const router = createBrowserRouter([
       },
       {
         path: "gitauth",
-        element: <GitAuth />,
+        element:
+          <Protected path="/import/repos">
+            <GitAuth />,
+          </Protected>
       },
       {
         path: "gitauth/redirect",
-        element: <GitRedirect />
+        element: <Protected path="/import/repos">
+          <GitRedirect />,
+        </Protected>
       }
     ]
   },

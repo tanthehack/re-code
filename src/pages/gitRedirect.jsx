@@ -1,61 +1,37 @@
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { setCredentials } from "../app/features/ghSlice";
-import { useLazyGetAccessTokenQuery, useLazyGetInstallationsQuery } from "../app/services/ghApi";
+import { useLazyGetAccessTokenQuery } from "../app/services/ghApi";
 
 
 export const GitRedirect = () => {
     const navigate = useNavigate()
-
     const dispatch = useDispatch()
-
     const [getAccessToken] = useLazyGetAccessTokenQuery();
-    const [getInstallations] = useLazyGetInstallationsQuery();
+    const location = useLocation();
+    const id = new URLSearchParams(location.search).get("installation_id");
 
-    const handleGetInstallationId = async () => {
-        var id = ""
-        try {
-            const data = await getInstallations()
-            id = `${data?.data[0]?.id}`
-        } catch (error) {
-            console.log(error)
-        }
-
-        return id
-    }
-
-    const handleSetCredentials = async () => {
-        var id = ""
-
-        try {
-            const data = await getInstallations()
-            id = `${data?.data[0]?.id}`
-        } catch (error) {
-            console.log(error)
-        }
-
+    const handleSetCredentials = useCallback(async () => {
         try {
             const data = await getAccessToken({ id: id })
-            console.log(data)
             dispatch(
                 setCredentials({
                     installationId: id,
                     token: data?.data?.token
                 })
             )
+            navigate('/import/repos', { replace: true })
         } catch (error) {
             console.log(error)
         }
-    }
+    }, [])
 
     useEffect(() => {
-        setTimeout(() => {
-            handleSetCredentials()
-            navigate('/import/repos', { replace: true })
-        }, 2000)
-    })
+        handleSetCredentials()
+            .catch(console.error);
+    }, [handleSetCredentials])
 
     return (
         <div className="h-full w-full flex flex-col gap-10 items-center justify-center">
