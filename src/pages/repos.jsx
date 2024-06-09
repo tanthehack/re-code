@@ -10,7 +10,7 @@ export const Repos = () => {
 
     const repos = data?.repositories
 
-    const handleSelectRepo = async (id, e) => {
+    const handleSelectRepo = async (id, owner, e) => {
         e?.preventDefault()
 
         //send repo id to the backend
@@ -30,7 +30,7 @@ export const Repos = () => {
                             language={repo.language}
                             date={repo.updated_at}
                             status={repo.visibility}
-                            onClick={handleSelectRepo(repo.id, repo.owner)}
+                            onClick={(e) => handleSelectRepo(repo.id, repo.owner, e)}
                         />
                     ))}
             </>
@@ -51,15 +51,15 @@ export const Repos = () => {
     };
 
     return (
-        <section className="w-full h-[calc(100vh-50px)] flex justify-center items-center px-32 py-16">
+        <section className="w-full h-[calc(100vh-50px)] flex justify-center items-center px-32 py-12">
             <div className="dark:bg-coal-main dark:text-white border-[1px] border-gray-semi dark:border-orange-light bg-white text-coal-main shadow-md h-full w-full rounded-xl px-16 py-10 scroll-auto">
                 {isLoading ? <Loader classNames="flex items-center justify-center h-full w-full" /> :
                     <>
-                        <header className="flex flex-col gap-1 justify-between px-4">
+                        <header className="flex flex-col gap-1 justify-between px-4 mb-4">
                             <h1 className="text-3xl">Choose a repo to start_</h1>
                             <p className="flex items-center gap-2"><Icons.Info className="w-4 text-gray-dark" />Select a repo that contains JavaScript code.</p>
                         </header>
-                        <div className="h-[calc(100%-120px)]">
+                        <div className="h-[calc(100%-140px)]">
                             <Items currentItems={currentItems} />
                         </div>
                         <div>

@@ -17,11 +17,11 @@ export const CodeCard = ({ title, content, icon, url }) => {
     )
 }
 
-export const RepoCard = ({ name, language, date, status }) => {
+export const RepoCard = ({ name, language, date, status, onClick }) => {
     const formattedDate = `${Intl.DateTimeFormat('en', { month: 'short' }).format(new Date(date))}, ${new Date(date).getFullYear()}`
     return (
         <>
-            <button className="w-full flex justify-between p-4 rounded-xl
+            <button onClick={onClick} className="w-full flex justify-between p-4 rounded-xl
         hover:bg-orange-light dark:hover:bg-coal-light
         "
             >

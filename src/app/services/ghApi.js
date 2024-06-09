@@ -8,7 +8,6 @@ const baseQuery = fetchBaseQuery({
         if (token) {
             headers.set("authorization", `Bearer ${token}`);
         }
-        console.log(headers)
         return headers;
     },
 });
