@@ -17,6 +17,8 @@ import { Provider } from 'react-redux';
 import { store } from './app/store.js';
 import { GitRedirect } from './pages/gitRedirect.jsx';
 import Protected from './utils/protected.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'
 
 const router = createBrowserRouter([
   {
@@ -70,6 +72,17 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <ToastContainer
+      position="top-center"
+      autoClose={1000}
+      stacked
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme={localStorage.getItem('color-theme')}
+    />
     <RouterProvider router={router} />
   </React.StrictMode>
 );

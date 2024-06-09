@@ -4,6 +4,7 @@ import ReactPaginate from "react-paginate";
 import * as Icons from "lucide-react"
 import { useGetUserReposQuery } from "../app/services/ghApi";
 import { Loader } from "../components/loader";
+import { toast } from "react-toastify";
 
 export const Repos = () => {
     const { data, isLoading } = useGetUserReposQuery()
@@ -17,6 +18,7 @@ export const Repos = () => {
 
         //wait for response, then navigate to loading
         // page or show loading modal
+        toast.success('🦄 Wow so easy!');
     }
 
     function Items({ currentItems }) {
