@@ -1,4 +1,3 @@
-import { Search } from "lucide-react";
 import { RepoCard } from "../components/card";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
@@ -9,7 +8,16 @@ import { Loader } from "../components/loader";
 export const Repos = () => {
     const { data, isLoading } = useGetUserReposQuery()
 
-    const repos = data?.repositories?.filter(repo => repo?.language == "JavaScript")
+    const repos = data?.repositories
+
+    const handleSelectRepo = async (id, e) => {
+        e?.preventDefault()
+
+        //send repo id to the backend
+
+        //wait for response, then navigate to loading
+        // page or show loading modal
+    }
 
     function Items({ currentItems }) {
         return (
@@ -22,6 +30,7 @@ export const Repos = () => {
                             language={repo.language}
                             date={repo.updated_at}
                             status={repo.visibility}
+                            onClick={handleSelectRepo(repo.id, repo.owner)}
                         />
                     ))}
             </>
@@ -42,15 +51,15 @@ export const Repos = () => {
     };
 
     return (
-        <section className="w-full h-[calc(100vh-50px)] flex justify-center items-center px-32 py-20">
+        <section className="w-full h-[calc(100vh-50px)] flex justify-center items-center px-32 py-16">
             <div className="dark:bg-coal-main dark:text-white border-[1px] border-gray-semi dark:border-orange-light bg-white text-coal-main shadow-md h-full w-full rounded-xl px-16 py-10 scroll-auto">
                 {isLoading ? <Loader classNames="flex items-center justify-center h-full w-full" /> :
                     <>
-                        <header className="flex items-center justify-between px-4">
-                            <h1 className="text-3xl mb-4">Choose a repo to start_</h1>
-                            <Search />
+                        <header className="flex flex-col gap-1 justify-between px-4">
+                            <h1 className="text-3xl">Choose a repo to start_</h1>
+                            <p className="flex items-center gap-2"><Icons.Info className="w-4 text-gray-dark" />Select a repo that contains JavaScript code.</p>
                         </header>
-                        <div className="h-[calc(100%-80px)]">
+                        <div className="h-[calc(100%-120px)]">
                             <Items currentItems={currentItems} />
                         </div>
                         <div>
@@ -62,7 +71,7 @@ export const Repos = () => {
                                 pageCount={pageCount}
                                 previousLabel={<Icons.ArrowLeft />}
                                 renderOnZeroPageCount={null}
-                                className="flex text-sm font-semibold gap-10 h-[50px] items-center justify-center w-full"
+                                className="flex text-sm font-semibold gap-10 h-[80px] items-center justify-center w-full"
                                 activeClassName="py-2 px-4 rounded-lg border-[1px] border-orange-main"
                                 disabledClassName="dark:text-gray-light text-gray-semi"
                             />

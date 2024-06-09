@@ -76,6 +76,7 @@ export const Storage = {
     removeItem: (itemKey) => {
         window.localStorage.removeItem(itemKey);
     },
+
     clearItem: () => {
         window.localStorage.clear();
     },

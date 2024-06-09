@@ -1,4 +1,4 @@
-- [ ] Make sure user can't reauthorize if code is stored, conditionally render gitauth
+- [x] Make sure user can't reauthorize if code is stored, conditionally render gitauth
 - [ ] Make api slices for get all repos, get specific repo, send repo_id, send code(manual)
-
-http://localhost:5173/gitauth/redirect?code=57dabc4bb8061b538ed6&installation_id=51629998&setup_action=install
+- [ ] Make sure user can only get repos with javascript files parsed (check for the logic in the backend)
+- [ ] Fix the logout function, protect the import repo routes to redirect to auth if no id/token.
