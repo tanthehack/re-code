@@ -30,7 +30,7 @@ export const Repos = () => {
                             language={repo.language}
                             date={repo.updated_at}
                             status={repo.visibility}
-                            onClick={(e) => handleSelectRepo(repo.id, repo.owner, e)}
+                            onClick={(e) => handleSelectRepo(repo.name, repo.owner, e)}
                         />
                     ))}
             </>
