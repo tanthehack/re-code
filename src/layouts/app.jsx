@@ -8,17 +8,6 @@ const App = () => {
     const location = useLocation();
     const repo = new URLSearchParams(location.search).get("repo");
 
-    const [menuIsOpen, setMenuIsOpen] = useState(true)
-    const [editorFile, setEditorFile] = useState("")
-
-    const handleShowMenu = () => {
-        setMenuIsOpen(prev => !prev)
-    }
-
-    const handleSelectFile = (file) => {
-        setEditorFile(file)
-    }
-
     const files = [
         {
             id: 1,
@@ -33,6 +22,17 @@ const App = () => {
             name: "lol.js"
         },
     ]
+
+    const [menuIsOpen, setMenuIsOpen] = useState(true)
+    const [editorFile, setEditorFile] = useState(files[0].name)
+
+    const handleShowMenu = () => {
+        setMenuIsOpen(prev => !prev)
+    }
+
+    const handleSelectFile = (file) => {
+        setEditorFile(file)
+    }
 
     return (
         <main className="relative h-dvh font-main dark:bg-coal-dark bg-gray-main dark:text-white text-coal-main">
@@ -55,8 +55,8 @@ const App = () => {
                                 {files.map(file => (
                                     <button key={file.id}
                                         onClick={() => handleSelectFile(file.name)}
-                                        className="text-sm hover:text-orange-main text-gray-dark 
-                                    hover:bg-orange-light w-full text-left py-1 px-2 rounded-lg">
+                                        className={`${file.name == editorFile ? "text-orange-main bg-orange-light" : null} text-sm text-gray-dark 
+                                    dark:hover:bg-coal-main dark:hover:text-white hover:bg-gray-semi hover:text-coal-main w-full text-left py-1 px-2 rounded-sm`}>
                                         {file.name}
                                     </button>
                                 ))}
