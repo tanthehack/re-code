@@ -9,7 +9,7 @@ import "./index.css";
 import { Home } from './layouts/home.jsx';
 import { ImportCode } from './pages/importCode.jsx';
 import { GitAuth } from './pages/gitAuth.jsx';
-import { Editor } from './pages/editor.jsx';
+import { MainEditor } from './pages/editor.jsx';
 import { Summary } from './pages/summary.jsx';
 import { Landing } from './pages/landing.jsx';
 import { Repos } from './pages/repos.jsx';
@@ -60,14 +60,14 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Editor />
+        element: <MainEditor />
       },
-      {
-        path: "summary",
-        element: <Summary />
-      }
     ]
-  } //app layout component
+  }, //app layout component
+  {
+    path: "/summary",
+    element: <Summary />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
