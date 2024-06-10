@@ -18,7 +18,7 @@ export const Repos = () => {
 
     const [sendRepo, { isLoading: sendRepoIsLoading, isSuccess: sendRepoIsSucesss }] = useSendRepoMutation()
 
-    const [isOpen, setModalOpen] = useState(true)
+    const [isOpen, setModalOpen] = useState(false)
 
     const handleSelectRepo = async (repo, owner, e) => {
         e?.preventDefault()
