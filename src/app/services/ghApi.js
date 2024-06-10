@@ -65,6 +65,17 @@ export const ghApi = createApi({
                 method: "GET",
             })
         }),
+
+        sendRepo: builder.mutation({
+            query: ({ repo, owner }) => ({
+                url: `importCode`,
+                method: 'POST',
+                body: {
+                    repo: repo,
+                    owner: owner
+                }
+            })
+        })
     }),
 });
 
@@ -75,4 +86,5 @@ export const {
     useGetInstallationsQuery,
     useLazyGetUserReposQuery,
     useGetUserReposQuery,
+    useSendRepoMutation,
 } = ghApi;
