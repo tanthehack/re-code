@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import * as Icons from 'lucide-react';
 import { Button } from "../components/button";
 import { CollapsibleTextBlock } from "../components/codeBlock";
@@ -49,7 +49,7 @@ export const MainEditor = () => {
     ];
 
     return (
-        <section className="w-full">
+        <section className="w-full relative">
             <header className="h-[50px]">
                 <div className="bg-white dark:bg-coal-main px-4 py-3 w-1/5 border-t-[2px] border-orange-main flex items-center justify-between">
                     <h1 className="text-sm">
@@ -74,6 +74,11 @@ export const MainEditor = () => {
                     />
                 ))}
             </div>
+            <Button asChild className="absolute right-4 bottom-4">
+                <Link to="/">
+                    Countinue to view Summary
+                </Link>
+            </Button>
         </section>
     );
 };

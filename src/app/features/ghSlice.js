@@ -47,4 +47,4 @@ export default ghAuthSlice.reducer;
 
 export const selectCurrentUser = () => user
 export const selectCurrentToken = () => Storage.getItem(TOKEN);
-export const selectInstallationId = () => installationId
+export const selectInstallationId = () => Storage.getItem(INSID)
