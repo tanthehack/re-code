@@ -7,7 +7,8 @@ const CodeBlock = ({ code, startLineNumber, errorLineNumbers }) => {
     const style = {
         background: 'transparent',
         fontSize: "13px",
-        paddingTop: "0px"
+        paddingTop: "0px",
+        width: "300%",
     };
 
     const getLineProps = (lineNumber) => {

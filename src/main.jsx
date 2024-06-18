@@ -51,6 +51,10 @@ const router = createBrowserRouter([
         element: <Protected path="/import/repos">
           <GitRedirect />,
         </Protected>
+      },
+      {
+        path: "/summary",
+        element: <Summary />
       }
     ]
   },
@@ -64,10 +68,6 @@ const router = createBrowserRouter([
       },
     ]
   }, //app layout component
-  {
-    path: "/summary",
-    element: <Summary />
-  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
