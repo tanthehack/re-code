@@ -2,7 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { logOut, selectCurrentToken, selectInstallationId, setCredentials } from "../features/ghSlice";
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_BASE_URL,
+    // baseUrl: import.meta.env.VITE_BASE_URL,
+    baseUrl: "http://localhost:4000/",
     prepareHeaders: (headers) => {
         const token = selectCurrentToken()
         if (token) {
