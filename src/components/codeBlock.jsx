@@ -7,7 +7,7 @@ const CodeBlock = ({ code, startLineNumber, errorLineNumbers }) => {
     const style = {
         background: 'transparent',
         fontSize: "13px",
-        paddingTop: "0px", 
+        paddingTop: "0px",
         width: "300%"
     };
 
@@ -38,7 +38,7 @@ const CodeBlock = ({ code, startLineNumber, errorLineNumbers }) => {
     );
 };
 
-export const CollapsibleTextBlock = ({ sourceCode, correctedCode, codeError, text, startLineNumber, errorLineNumbers, resources }) => {
+export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, startLineNumber, errorLineNumbers }) => {
     const [expanded, setExpanded] = useState(false);
 
     const toggleExpand = () => {
@@ -59,8 +59,14 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, codeError, tex
             </div>
             {expanded &&
                 <span className='block space-y-4 p-4 text-sm bg-gray-main dark:bg-coal-dark border-l-[1px] border-l-orange-main'>
-                    <h1 className='font-bold text-lg'>{codeError}</h1>
-                    <p>{text}</p>
+                    {
+                        violations.map((violation, index) => (
+                            <>
+                                <h1 key={index} className='font-bold text-lg text-red-500'>{violation.violation}</h1>
+                                <p>{violation.suggestion}</p>
+                            </>
+                        ))
+                    }
                     <div className=''>
                         <SyntaxHighlighter
                             language="javascript"
@@ -73,7 +79,7 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, codeError, tex
                         </SyntaxHighlighter>
                     </div>
 
-                    <span className='flex items-center gap-3'>
+                    {/* <span className='flex items-center gap-3'>
                         <Icons.SquareArrowOutUpRight size={"16px"} />
                         <ul>
                             {resources.map((resource, index) => (
@@ -85,7 +91,7 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, codeError, tex
                             ))}
                         </ul>
 
-                    </span>
+                    </span> */}
                 </span>
             }
         </>

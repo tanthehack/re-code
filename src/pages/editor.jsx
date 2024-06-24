@@ -5,7 +5,6 @@ import { CollapsibleTextBlock } from "../components/codeBlock";
 
 export const MainEditor = () => {
     const file = useOutletContext();
-    console.log(file)
 
     return (
         <section className="w-full relative">
@@ -23,13 +22,11 @@ export const MainEditor = () => {
                 {file?.codeBlocks?.map((block, index) => (
                     <CollapsibleTextBlock
                         key={index}
-                        sourceCode={block.sourceCode}
+                        sourceCode={block.code}
                         correctedCode={block.correctedCode}
-                        codeError={block.codeError}
-                        text={block.text}
+                        violations={block.violations}
                         startLineNumber={block.startLineNumber}
                         errorLineNumbers={block.errorLineNumbers}
-                        resources={block.resources}
                     />
                 ))}
             </div>

@@ -27,7 +27,8 @@ export const Repos = () => {
         try {
             handleModal()
             const data = await sendRepo({ repo: repo, owner: owner }).unwrap()
-            setTimeout(() => navigate(`/app?repo=${repo}&owner=${owner}`), 1000)
+            console.log(data)
+            setTimeout(() => navigate(`/app?repo=${repo}`, { state: data }), 3000)
         } catch (error) {
             console.log(error)
             toast.error(`${error?.data?.error}`);

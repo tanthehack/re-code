@@ -69,7 +69,7 @@ export const ghApi = createApi({
 
         sendRepo: builder.mutation({
             query: ({ repo, owner }) => ({
-                url: `importCode`,
+                url: `reviewCode?type=git`,
                 method: 'POST',
                 body: {
                     repo: repo,

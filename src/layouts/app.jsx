@@ -6,140 +6,15 @@ import { useState } from "react"
 
 const App = () => {
     const location = useLocation();
+    const { state } = useLocation();
+
+    if (!state) {
+        return <h1>No files found</h1>
+    }
+
     const repo = new URLSearchParams(location.search).get("repo");
 
-    const files = [
-        {
-            id: 1,
-            name: "script.js",
-            codeBlocks: [
-                {
-                    sourceCode: `function script(a, b) {\nif (a = b) { // should use '===' instead of '='\nreturn true;
-        } else {
-            return false;
-        }
-    }`,
-                    correctedCode: `function script(a, b) {
-                        return a === b;
-                    }`,
-                    codeError: "Incorrect assignment operator in the if condition",
-                    text: ` Use the equality operator (\`a === b\`) to compare values instead of the assignment operator. Also, simplify the return statement by directly returning the comparison result.`,
-                    startLineNumber: 1,
-                    errorLineNumbers: [2],
-                    resources: [
-                        { text: 'MDN Web Docs: Equality operators', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators' }
-                    ]
-                },
-                {
-                    sourceCode: `function foo(a, b) {
-                        if (a = b) { // should use '===' instead of '='
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }`,
-                    correctedCode: `function foo(a, b) {
-                        return a === b;
-                    }`,
-                    codeError: "Incorrect assignment operator in the if condition",
-                    text: ` Use the equality operator (\`a === b\`) to compare values instead of the assignment operator. Also, simplify the return statement by directly returning the comparison result.`,
-                    startLineNumber: 1,
-                    errorLineNumbers: [2],
-                    resources: [
-                        { text: 'MDN Web Docs: Equality operators', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators' }
-                    ]
-                },
-                {
-                    sourceCode: `function foo(a, b) {
-                        if (a = b) { // should use '===' instead of '='
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }`,
-                    correctedCode: `function foo(a, b) {
-                        return a === b;
-                    }`,
-                    codeError: "Incorrect assignment operator in the if condition",
-                    text: ` Use the equality operator (\`a === b\`) to compare values instead of the assignment operator. Also, simplify the return statement by directly returning the comparison result.`,
-                    startLineNumber: 1,
-                    errorLineNumbers: [2],
-                    resources: [
-                        { text: 'MDN Web Docs: Equality operators', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators' }
-                    ]
-                },
-
-            ]
-        },
-        {
-            id: 2,
-            name: "hah.js",
-            codeBlocks: [
-                {
-                    sourceCode: `function hah(a, b) {
-                        if (a = b) { // should use '===' instead of '='
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }`,
-                    correctedCode: `function hah(a, b) {
-                        return a === b;
-                    }`,
-                    codeError: "Incorrect assignment operator in the if condition",
-                    text: ` Use the equality operator (\`a === b\`) to compare values instead of the assignment operator. Also, simplify the return statement by directly returning the comparison result.`,
-                    startLineNumber: 1,
-                    errorLineNumbers: [2],
-                    resources: [
-                        { text: 'MDN Web Docs: Equality operators', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators' }
-                    ]
-                },
-                {
-                    sourceCode: `function foo(a, b) {
-                        if (a = b) { // should use '===' instead of '='
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }`,
-                    correctedCode: `function foo(a, b) {
-                        return a === b;
-                    }`,
-                    codeError: "Incorrect assignment operator in the if condition",
-                    text: ` Use the equality operator (\`a === b\`) to compare values instead of the assignment operator. Also, simplify the return statement by directly returning the comparison result.`,
-                    startLineNumber: 1,
-                    errorLineNumbers: [2],
-                    resources: [
-                        { text: 'MDN Web Docs: Equality operators', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators' }
-                    ]
-                },
-                {
-                    sourceCode: `function foo(a, b) {
-                        if (a = b) { // should use '===' instead of '='
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }`,
-                    correctedCode: `function foo(a, b) {
-                        return a === b;
-                    }`,
-                    codeError: "Incorrect assignment operator in the if condition",
-                    text: ` Use the equality operator (\`a === b\`) to compare values instead of the assignment operator. Also, simplify the return statement by directly returning the comparison result.`,
-                    startLineNumber: 1,
-                    errorLineNumbers: [2],
-                    resources: [
-                        { text: 'MDN Web Docs: Equality operators', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators' }
-                    ]
-                },
-
-            ]
-        },
-        {
-            id: 3,
-            name: "lol.js"
-        },
-    ]
+    const files = state
 
     const [menuIsOpen, setMenuIsOpen] = useState(true)
     const [editorFile, setEditorFile] = useState(files[0])
