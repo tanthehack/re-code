@@ -1,7 +1,14 @@
 - [x] Make sure user can't reauthorize if code is stored, conditionally render gitauth
-- [ ] Make api slices for get all repos, get specific repo, send repo_id
+- [x] Make api slices for get all repos, get specific repo, send repo_id
 - [x] Make sure user can only get repos with javascript files parsed (check for the logic in the backend)
 - [ ] Fix the logout function, 
 - [x] protect the import repo routes to redirect to auth if no id/token.
 - [ ] Add manual send code api slice
-- [ ] Add param that says import action for the editor to know what exactly it's displaying
+- [x] Add param that says import action for the editor to know what exactly it's displaying
+- [ ] Find fix for theme problems: editor and updating
+- [ ] Finish summary page
+- [ ] Add accept suggestions
+- [ ] Work on manual code import pages
+- [ ] Add tutorial Modals in editor
+- [ ] Protect app routes, make new storage item and store, code files in it?
+- [ ] For defense use only light mode

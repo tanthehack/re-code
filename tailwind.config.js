@@ -25,7 +25,8 @@ export default {
         light: '#47494C',
         dark: "#0F1013"
       },
-      white: '#ffffff'
+      white: '#ffffff',
+      green: '#478332'
     },
     extend: {},
   },
