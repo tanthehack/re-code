@@ -15,6 +15,7 @@ const App = () => {
     const repo = new URLSearchParams(location.search).get("repo");
 
     const files = state
+    console.log(files)
 
     const [menuIsOpen, setMenuIsOpen] = useState(true)
     const [editorFile, setEditorFile] = useState(files[0])

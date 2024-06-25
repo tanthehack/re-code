@@ -5,10 +5,12 @@
 - [x] protect the import repo routes to redirect to auth if no id/token.
 - [ ] Add manual send code api slice
 - [x] Add param that says import action for the editor to know what exactly it's displaying
-- [ ] Find fix for theme problems: editor and updating
+- [x] Find fix for theme problems: editor and updating
 - [ ] Finish summary page
 - [ ] Add accept suggestions
 - [ ] Work on manual code import pages
 - [ ] Add tutorial Modals in editor
 - [ ] Protect app routes, make new storage item and store, code files in it?
-- [ ] For defense use only light mode
+- [x] For defense use only light mode
+- [x] Fix the light theme of the editor
+- [ ] Add error handling for editor, make sure a file is passed to it
