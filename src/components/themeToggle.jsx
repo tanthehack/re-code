@@ -7,23 +7,23 @@ export const ThemeToggle = ({ classNames }) => {
 
     const handleThemeSwitch = () => {
         // if set via local storage previously
-        if (localStorage.getItem('color-theme')) {
-            if (localStorage.getItem('color-theme') === 'light') {
+        if (localStorage.getItem('theme')) {
+            if (localStorage.getItem('theme') === 'light') {
                 setCurrentTheme('light');
                 document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
             } else {
                 setCurrentTheme('dark');
                 document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
+                localStorage.setItem('theme', 'light');
             }
         } else {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
+                localStorage.setItem('theme', 'light');
             } else {
                 document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
             }
         }
     }
