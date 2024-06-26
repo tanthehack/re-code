@@ -3,6 +3,7 @@ import logo from '../assets/images/logo.svg'
 import { ThemeToggle } from "../components/themeToggle"
 import * as Icons from 'lucide-react'
 import { useState } from "react"
+import jsIcon from "../assets/icons/js.svg"
 
 const App = () => {
     const location = useLocation();
@@ -50,7 +51,8 @@ const App = () => {
                                     <button key={file.id}
                                         onClick={() => handleSelectFile(file)}
                                         className={`${file.name == editorFile.name ? "text-orange-main bg-orange-light" : null} text-sm text-gray-dark 
-                                    dark:hover:bg-coal-main dark:hover:text-white hover:bg-gray-semi hover:text-coal-main w-full text-left py-1 px-2 rounded-sm`}>
+                                    dark:hover:bg-coal-main dark:hover:text-white hover:bg-gray-semi hover:text-coal-main w-full text-left py-1 px-2 rounded-sm flex items-center gap-2`}>
+                                        <img src={jsIcon} alt="javascript icon" className="fill-orange-main" />
                                         {file.name}
                                     </button>
                                 ))}
