@@ -5,7 +5,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 
     return (
         <div className="fixed inset-0 flex text-coal-main dark:text-white items-center justify-center z-50">
-            <div className="fixed inset-0 bg-coal-main opacity-50" onClick={onClose}></div>
+            <div className="fixed inset-0 bg-coal-main opacity-50"></div>
             <div className="flex flex-col gap-6 p-6 bg-white dark:bg-coal-main 
             border-[1px] border-gray-semi dark:border-orange-light rounded-lg 
             overflow-hidden shadow-xl transform transition-all max-w-lg w-full">
