@@ -1,10 +1,21 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import * as Icons from 'lucide-react';
 import { Button } from "../components/button";
 import { CollapsibleTextBlock } from "../components/codeBlock";
 
 export const MainEditor = () => {
     const file = useOutletContext();
+    const navigate = useNavigate();
+
+    // const data = {
+    //     totalErrors: file[-1]?.totalErrors,
+    //     totalAccepted: totalAccepted ?? null,
+    //     rules: []
+    // }
+
+    const handleNavigateSummary = () => {
+        navigate(`/summary`, { state: data })
+    }
 
     return (
         <section className="w-full relative">
@@ -30,10 +41,8 @@ export const MainEditor = () => {
                     />
                 ))}
             </div>
-            <Button asChild className="absolute right-4 bottom-4">
-                <Link to="/summary">
-                    Countinue to Summary
-                </Link>
+            <Button onClick={handleNavigateSummary} className="absolute right-4 bottom-4">
+                Countinue to Summary
             </Button>
         </section>
     );
