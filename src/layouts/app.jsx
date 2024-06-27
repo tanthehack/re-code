@@ -16,7 +16,7 @@ const App = () => {
     const repo = new URLSearchParams(location.search).get("repo");
 
     const files = state
-    console.log(files)
+    console.log(files.slice(-1))
 
     const [menuIsOpen, setMenuIsOpen] = useState(true)
     const [editorFile, setEditorFile] = useState(files[0])
@@ -47,11 +47,12 @@ const App = () => {
                         <section className="w-[200px] h-full p-4 space-y-3 border-r-[1px] border-gray-semi dark:border-coal-light">
                             <h1 className="font-semibold">{repo}</h1>
                             <div className="flex flex-col items-start">
-                                {files.map(file => (
-                                    <button key={file.id}
+                                {files.filter(file => file.totalErrors == null).map((file, index) => (
+                                    <button key={index}
                                         onClick={() => handleSelectFile(file)}
                                         className={`${file.name == editorFile.name ? "text-orange-main bg-orange-light" : null} text-sm text-gray-dark 
-                                    dark:hover:bg-coal-main dark:hover:text-white hover:bg-gray-semi hover:text-coal-main w-full text-left py-1 px-2 rounded-sm flex items-center gap-2`}>
+                                        dark:hover:bg-coal-main dark:hover:text-white hover:bg-gray-semi hover:text-coal-main w-full text-left py-1 px-2 
+                                        rounded-sm flex items-center gap-2`}>
                                         <img src={jsIcon} alt="javascript icon" className="fill-orange-main" />
                                         {file.name}
                                     </button>

@@ -14,3 +14,5 @@
 - [x] For defense use only light mode
 - [x] Fix the light theme of the editor
 - [ ] Add error handling for editor, make sure a file is passed to it
+- [ ] Make the close file button in editor work
+- [ ] Add rest state where no file is open in editor
