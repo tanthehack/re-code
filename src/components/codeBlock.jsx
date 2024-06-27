@@ -4,7 +4,6 @@ import { atomOneDark, atomOneLight } from 'react-syntax-highlighter/dist/esm/sty
 import * as Icons from 'lucide-react';
 import Modal from './modal';
 import { Button } from './button';
-import { Tooltip } from 'radix-ui';
 
 const theme = localStorage.theme;
 
@@ -54,12 +53,9 @@ const CodeBlock = ({ code, startLineNumber, errorLineNumbers, onErrorLineClick }
     );
 };
 
-export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, startLineNumber, errorLineNumbers, onUpdate }) => {
+export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, startLineNumber, errorLineNumbers }) => {
     const [expanded, setExpanded] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const [localViolations, setLocalViolations] = useState(violations);
-    const [localCorrectedCode, setLocalCorrectedCode] = useState(correctedCode);
-    const [localErrorLineNumbers, setLocalErrorLineNumbers] = useState(errorLineNumbers);
 
     const toggleExpand = () => {
         setExpanded(prev => !prev);
@@ -67,12 +63,12 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, st
 
     const handleModal = () => {
         setIsOpen(prev => !prev)
-    };
+    }
 
     const data = {
         correctedCode: "",
         violation: ""
-    };
+    }
 
     const truncateString = (str, num) => {
         if (str.length > num) {
@@ -80,22 +76,7 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, st
         } else {
             return str;
         }
-    };
-
-    const acceptFix = (index) => {
-        const newViolation = { ...localViolations[index], accepted: true };
-        const newViolations = [...localViolations.slice(0, index), newViolation, ...localViolations.slice(index + 1)];
-        setLocalViolations(newViolations);
-        onUpdate(newViolations, localCorrectedCode, localErrorLineNumbers);
-    };
-
-    const deleteFix = (index) => {
-        const newViolations = localViolations.filter((_, i) => i !== index);
-        const newErrorLineNumbers = localErrorLineNumbers.filter((_, i) => i !== index);
-        setLocalViolations(newViolations);
-        setLocalErrorLineNumbers(newErrorLineNumbers);
-        onUpdate(newViolations, localCorrectedCode, newErrorLineNumbers);
-    };
+    }
 
     return (
         <>
@@ -103,7 +84,7 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, st
                 <CodeBlock
                     code={sourceCode}
                     startLineNumber={startLineNumber}
-                    errorLineNumbers={localErrorLineNumbers}
+                    errorLineNumbers={errorLineNumbers}
                     onErrorLineClick={toggleExpand}
                 />
                 <button onClick={toggleExpand} className='text-coal-black px-3 group-hover:text-orange-main dark:text-gray-dark'>
@@ -113,18 +94,18 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, st
             {expanded &&
                 <span className='block space-y-4 p-4 text-sm bg-gray-main dark:bg-coal-dark border-l-[1px] border-l-orange-main'>
                     {
-                        localViolations.map((violation, index) => {
+                        violations.map((violation, index) => {
                             data.violation = violation
-                            data.correctedCode = localCorrectedCode
+                            data.correctedCode = correctedCode
                             return (
                                 <div key={index} className='space-y-4'>
                                     <span className='flex items-center justify-between'>
                                         <h1 className='font-bold text-lg text-red-500'>{violation.violation}</h1>
                                         <span>
-                                            <Button size="icon" variant="none" onClick={() => acceptFix(index)}>
+                                            <Button size="icon" variant="none">
                                                 <Icons.CopyCheck size={16} />
                                             </Button>
-                                            <Button size="icon" variant="none" onClick={() => deleteFix(index)}>
+                                            <Button size="icon" variant="none">
                                                 <Icons.Trash size={16} />
                                             </Button>
                                         </span>
@@ -139,7 +120,7 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, st
                         <Icons.Maximize2 size={16} />
                         <p>Read More</p>
                     </button>
-                    {localCorrectedCode && localCorrectedCode.length > 0 && (
+                    {correctedCode && correctedCode.length > 0 && (
                         <div className='border-[1px] border-dashed border-orange-main dark:border-orange-light rounded-lg p-2'>
                             <h1 className='font-bold text-lg'>Possible Fix:</h1>
                             <SyntaxHighlighter
@@ -149,7 +130,7 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, st
                                 wrapLongLines
                                 wrapLines
                             >
-                                {localCorrectedCode.join('\n')}
+                                {correctedCode.join('\n')}
                             </SyntaxHighlighter>
                         </div>
                     )}
@@ -165,7 +146,7 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, st
 };
 
 const CodeBlockModal = ({ isOpen, handleModal, data }) => {
-    const { violation, correctedCode } = data;
+    const { violation, correctedCode } = data
     return (
         <Modal isOpen={isOpen} onClose={handleModal} title={"Suggestions"}>
             <span className='block space-y-10 text-sm'>
@@ -194,5 +175,5 @@ const CodeBlockModal = ({ isOpen, handleModal, data }) => {
                 )}
             </span>
         </Modal>
-    );
-};
+    )
+}
