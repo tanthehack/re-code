@@ -56,7 +56,7 @@ const App = () => {
                                 {files?.filter(file => file?.totalErrors == null).map((file, index) => (
                                     <button key={index}
                                         onClick={() => handleSelectFile(file)}
-                                        className={`${file?.name == editorFile?.name ? "text-orange-main bg-orange-light" : null} text-sm text-gray-dark 
+                                        className={`${file?.name == editorFile?.name ? "text-orange-main bg-orange-light" : null} text-xs text-gray-dark 
                                         dark:hover:bg-coal-main dark:hover:text-white hover:bg-gray-semi hover:text-coal-main w-full text-left py-1 px-2 
                                         rounded-sm flex items-center gap-2`}>
                                         <img src={jsIcon} alt="javascript icon" className="fill-orange-main" />

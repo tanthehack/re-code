@@ -50,6 +50,11 @@ export const Summary = () => {
                                 issues="20"
                                 accepted="1"
                             />
+                            <TableData
+                                ruleId="No Console"
+                                issues="14"
+                                accepted="0"
+                            />
                         </tbody>
                     </table>
                 </div>

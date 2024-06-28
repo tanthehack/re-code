@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
 import { atomOneDark, atomOneLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import * as Icons from 'lucide-react';
@@ -56,18 +56,15 @@ const CodeBlock = ({ code, startLineNumber, errorLineNumbers, onErrorLineClick }
 export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, startLineNumber, errorLineNumbers }) => {
     const [expanded, setExpanded] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [data, setData] = useState({});
 
     const toggleExpand = () => {
         setExpanded(prev => !prev);
     };
 
-    const handleModal = () => {
+    const handleModal = (violation, correctedCode) => {
         setIsOpen(prev => !prev)
-    }
-
-    const data = {
-        correctedCode: "",
-        violation: ""
+        setData({ violation, correctedCode })
     }
 
     const truncateString = (str, num) => {
@@ -95,8 +92,6 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, st
                 <span className='block space-y-4 p-4 text-sm bg-gray-main dark:bg-coal-dark border-l-[1px] border-l-orange-main'>
                     {
                         violations.map((violation, index) => {
-                            data.violation = violation
-                            data.correctedCode = correctedCode
                             return (
                                 <div key={index} className='space-y-4'>
                                     <span className='flex items-center justify-between'>
@@ -111,15 +106,15 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, st
                                         </span>
                                     </span>
                                     <p className='pr-20'>{truncateString(violation.suggestion, 500)}</p>
+                                    <button onClick={() => handleModal(violation, correctedCode)}
+                                        className='text-gray-dark dark:text-coal-light flex items-center gap-2'>
+                                        <Icons.Maximize2 size={16} />
+                                        <p>Read More</p>
+                                    </button>
                                 </div>
                             )
                         })
                     }
-                    <button onClick={handleModal}
-                        className='text-gray-dark dark:text-coal-light flex items-center gap-2'>
-                        <Icons.Maximize2 size={16} />
-                        <p>Read More</p>
-                    </button>
                     {correctedCode && correctedCode.length > 0 && (
                         <div className='border-[1px] border-dashed border-orange-main dark:border-orange-light rounded-lg p-2'>
                             <h1 className='font-bold text-lg'>Possible Fix:</h1>
@@ -155,9 +150,9 @@ const CodeBlockModal = ({ isOpen, handleModal, data }) => {
                         <span className='bg-orange-light text-coal-main dark:text-white p-2 h-fit rounded-lg'>
                             <Icons.Lightbulb />
                         </span>
-                        {violation.violation}
+                        {violation?.violation}
                     </h1>
-                    <p>{violation.suggestion}</p>
+                    <p>{violation?.suggestion}</p>
                 </div>
                 {correctedCode && correctedCode.length > 0 && (
                     <div className='border-[1px] border-orange-main dark:border-orange-light rounded-lg p-2'>

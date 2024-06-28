@@ -2,11 +2,13 @@ import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import * as Icons from 'lucide-react';
 import { Button } from "../components/button";
 import { CollapsibleTextBlock } from "../components/codeBlock";
-import { useEffect, useState } from "react";
+import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
+import { atomOneDark, atomOneLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
+const theme = localStorage.theme;
 
 export const MainEditor = () => {
     let { editorFile: file, handleCloseFile, fileOpen } = useOutletContext();
-    console.log(file)
     const navigate = useNavigate();
 
     // const data = {
@@ -43,7 +45,23 @@ export const MainEditor = () => {
                                     violations={block.violations}
                                     startLineNumber={block.startLineNumber}
                                     errorLineNumbers={block.errorLineNumbers}
+                                    remainingCodeBlocks={file.remainingCodeBlocks}
                                 />
+                            ))
+                        }
+                        {
+                            file?.remainingCodeBlocks?.map((block, index) => (
+                                <SyntaxHighlighter
+                                    language="javascript"
+                                    style={theme === 'dark' ? atomOneDark : atomOneLight}
+                                    customStyle={{ background: 'transparent', fontSize: '13px' }}
+                                    startingLineNumber={block.startLineNumber}
+                                    wrapLongLines
+                                    showLineNumbers
+                                    wrapLines
+                                >
+                                    {block.code}
+                                </SyntaxHighlighter>
                             ))
                         }
                     </div>
