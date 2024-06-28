@@ -16,7 +16,9 @@ export const Repos = () => {
 
     const repos = data?.repositories
 
-    const [sendRepo, { isLoading: sendRepoIsLoading, isSuccess: sendRepoIsSucesss }] = useSendRepoMutation()
+    const [sendRepo, { isLoading: sendRepoIsLoading, isSuccess: sendRepoIsSucesss, error: sendRepoError }] = useSendRepoMutation()
+
+    console.log(sendRepoError)
 
     const [isOpen, setModalOpen] = useState(false)
 
@@ -99,7 +101,7 @@ export const Repos = () => {
                     </Error>
                 }
             </div>
-            <Modal isOpen={isOpen} onClose={handleModal}>
+            <Modal isOpen={isOpen} onClose={handleModal} size="small">
                 {sendRepoIsLoading ? <Loader /> : sendRepoIsSucesss ?
                     <>
                         <Icons.CircleCheck size={"96px"} className="text-gray-semi dark:text-gray-dark" />
@@ -113,7 +115,7 @@ export const Repos = () => {
                         <Icons.FileWarning size={"96px"} className="text-gray-semi dark:text-gray-dark" />
                         <div className="flex flex-col items-center">
                             <h1 className="text-2xl font-bold">Oops!</h1>
-                            <p className="text-sm">Repo doesn't have JavaScript!</p>
+                            <p className="text-sm">{sendRepoError?.data?.error}</p>
                         </div>
                     </>
                 }
