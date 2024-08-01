@@ -53,7 +53,7 @@ const CodeBlock = ({ code, startLineNumber, errorLineNumbers, onErrorLineClick }
     );
 };
 
-export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, startLineNumber, errorLineNumbers }) => {
+export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, startLineNumber, errorLineNumbers, handleSelectSuggestions }) => {
     const [expanded, setExpanded] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [data, setData] = useState({});
@@ -96,14 +96,11 @@ export const CollapsibleTextBlock = ({ sourceCode, correctedCode, violations, st
                                 <div key={index} className='space-y-4'>
                                     <span className='flex items-center justify-between'>
                                         <h1 className='font-bold text-lg text-red-500'>{violation.violation}</h1>
-                                        <span>
-                                            <Button size="icon" variant="none">
+                                        {/* <span>
+                                            <Button size="icon" variant="none" onClick={handleSelectSuggestions}>
                                                 <Icons.CopyCheck size={16} />
                                             </Button>
-                                            <Button size="icon" variant="none">
-                                                <Icons.Trash size={16} />
-                                            </Button>
-                                        </span>
+                                        </span> */}
                                     </span>
                                     <p className='pr-20'>{truncateString(violation.suggestion, 500)}</p>
                                     <button onClick={() => handleModal(violation, correctedCode)}

@@ -1,7 +1,10 @@
+import { useLocation } from "react-router-dom";
 import { Button } from "../components/button";
 import * as Icon from "lucide-react";
 
 export const Summary = () => {
+    const { data } = useLocation();
+    console.log(data)
     const handleDownloadReview = () => {
 
     }

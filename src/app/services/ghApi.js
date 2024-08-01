@@ -76,6 +76,16 @@ export const ghApi = createApi({
                     owner: owner
                 }
             })
+        }),
+
+        sendManualRepo: builder.mutation({
+            query: ({ code }) => ({
+                url: `reviewCode?type=manual`,
+                method: 'POST',
+                body: {
+                    code: code
+                }
+            })
         })
     }),
 });
@@ -88,4 +98,5 @@ export const {
     useLazyGetUserReposQuery,
     useGetUserReposQuery,
     useSendRepoMutation,
+    useSendManualRepoMutation
 } = ghApi;

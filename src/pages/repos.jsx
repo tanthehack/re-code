@@ -18,8 +18,6 @@ export const Repos = () => {
 
     const [sendRepo, { isLoading: sendRepoIsLoading, isSuccess: sendRepoIsSucesss, error: sendRepoError }] = useSendRepoMutation()
 
-    console.log(sendRepoError)
-
     const [isOpen, setModalOpen] = useState(false)
 
     const handleSelectRepo = async (repo, owner, e) => {

@@ -19,6 +19,7 @@ import { GitRedirect } from './pages/gitRedirect.jsx';
 import Protected from './utils/protected.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'
+import { Manual } from './pages/manual.jsx';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/summary",
         element: <Summary />
+      },
+      {
+        path: "/manual",
+        element: <Manual />
       }
     ]
   },

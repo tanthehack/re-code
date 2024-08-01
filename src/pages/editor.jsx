@@ -4,6 +4,7 @@ import { Button } from "../components/button";
 import { CollapsibleTextBlock } from "../components/codeBlock";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
 import { atomOneDark, atomOneLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { useState } from "react";
 
 const theme = localStorage.theme;
 
@@ -11,11 +12,17 @@ export const MainEditor = () => {
     let { editorFile: file, handleCloseFile, fileOpen } = useOutletContext();
     const navigate = useNavigate();
 
-    // const data = {
-    //     totalErrors: file[-1]?.totalErrors,
-    //     totalAccepted: totalAccepted ?? null,
-    //     rules: []
-    // }
+    const [acceptedSuggestions, setAcceptedSuggestions] = useState(0);
+
+    const handleSelectSuggestions = () => {
+        setAcceptedSuggestions(acceptedSuggestions + 1);
+    }
+
+    const data = {
+        totalErrors: file[-1]?.totalErrors,
+        totalAccepted: acceptedSuggestions,
+        rules: []
+    }
 
     const handleNavigateSummary = () => {
         navigate(`/summary`, { state: data })
@@ -46,6 +53,7 @@ export const MainEditor = () => {
                                     startLineNumber={block.startLineNumber}
                                     errorLineNumbers={block.errorLineNumbers}
                                     remainingCodeBlocks={file.remainingCodeBlocks}
+                                    handleSelectSuggestions={handleSelectSuggestions}
                                 />
                             ))
                         }
@@ -72,9 +80,9 @@ export const MainEditor = () => {
                     <h1 className="font-semibold text-gray-semi dark:text-coal-light">Select a file to get started.</h1>
                 </div>
             }
-            <Button onClick={handleNavigateSummary} className="absolute right-4 bottom-4">
+            {/* <Button onClick={handleNavigateSummary} className="absolute right-4 bottom-4">
                 Countinue to Summary
-            </Button>
+            </Button> */}
         </section>
     );
 };
